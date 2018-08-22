@@ -1,4 +1,4 @@
-{% set version = "1.0.11" %}
+ set version = "1.0.11" %}
 
 package:
   name: libpll
@@ -18,6 +18,11 @@ requirements:
     - automake
   host:
     - perl
+
+test:
+  commands : # make sure library was built and linked 
+    - "otool -L $PREFIX/lib/libpll-sse3-pthreads.so | grep libm" # [osx]
+    - "ldd $PREFIX/ldd/libpll-sse3-pthreads.so | grep libm"  # [not osx]
 
 about:
   home: http://www.libpll.org/ 
